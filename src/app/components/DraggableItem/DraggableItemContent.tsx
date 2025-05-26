@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import { getUrlType, getYouTubeId } from '../../utils/urlUtils';
-import Modal from '../Modal'; // ✅ import the Modal
-import { X } from 'lucide-react';
+import Modal from '../Modal';
+import { getBlobUrlFromIndexedDB } from '../../utils/indexedDbUtils';
+import WebsitePreview from '../WebsitePreview';
 
 interface Props {
   content: string;
@@ -10,11 +12,39 @@ interface Props {
 
 const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
   const [showModal, setShowModal] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const isBlobReference = content.startsWith('__blob__');
 
-  const type = getUrlType(content);
+  useEffect(() => {
+    if (isBlobReference) {
+      const id = parseFloat(content.replace('__blob__', ''));
+      getBlobUrlFromIndexedDB(id).then((url) => {
+        if (url) setImageUrl(url);
+      });
+    }
+  }, [content]);
+
+  const type = isBlobReference ? null : getUrlType(content);
   const videoId = type === 'youtube' ? getYouTubeId(content) : null;
 
-  // 👉 YOUTUBE EMBED
+  // 👉 Blob-based image preview
+  if (isBlobReference && imageUrl && !compact) {
+    return (
+      <>
+        <img
+          src={imageUrl}
+          alt="Uploaded content"
+          className="rounded-xl object-contain w-full h-[200px] shadow cursor-pointer"
+          onClick={() => setShowModal(true)}
+        />
+        <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Image">
+          <img src={imageUrl} alt="Full preview" className="w-full rounded-lg" />
+        </Modal>
+      </>
+    );
+  }
+
+  // 👉 YouTube embed
   if (type === 'youtube' && !compact && videoId) {
     return (
       <div className="rounded-xl overflow-hidden shadow-inner mb-3 aspect-video w-full">
@@ -30,28 +60,16 @@ const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
     );
   }
 
-  // 👉 EXTERNAL LINK
+  // 👉 External link preview using Microlink
   if (type === 'url' && !compact) {
-    const parsedUrl = new URL(content);
-    const domain = parsedUrl.hostname;
-    const pathPreview = parsedUrl.pathname.length > 1 ? parsedUrl.pathname : parsedUrl.href;
-
-    return (
-      <a
-        href={content}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block bg-blue-50 hover:bg-blue-100 rounded-md transition-all duration-200 h-[200px] p-4"
-      >
-        <div className="flex flex-col justify-center h-full">
-          <div className="text-sm font-semibold text-blue-800 truncate">{domain}</div>
-          <div className="text-xs text-gray-700 break-words mt-1 line-clamp-2">{pathPreview}</div>
-        </div>
-      </a>
-    );
+    try {
+      return <WebsitePreview url={content} />;
+    } catch {
+      // fallback to text rendering
+    }
   }
 
-  // 👉 PLAIN TEXT BOX
+  // 👉 Plain text fallback
   return (
     <>
       <div
@@ -74,11 +92,8 @@ const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
         </div>
       </div>
 
-      {/* 👉 Use Modal */}
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Full Text">
-        <p className="text-sm text-black leading-relaxed whitespace-pre-wrap">
-          {content}
-        </p>
+        {content}
       </Modal>
     </>
   );

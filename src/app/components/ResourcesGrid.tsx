@@ -56,8 +56,10 @@ const ResourcesGrid: React.FC<ResourcesGridProps> = ({
 
   return (
     <div
-      className={`bg-white rounded-2xl border shadow-lg p-8 transition-all duration-300 ${
-        isDragOver ? 'border-blue-400 bg-blue-50 shadow-xl' : 'border-gray-200'
+      className={`bg-gradient-to-br from-white/80 to-gray-50/80 backdrop-blur-xl rounded-3xl border shadow-2xl p-8 transition-all duration-500 ${
+        isDragOver 
+          ? 'border-blue-400 bg-gradient-to-br from-blue-50/90 to-indigo-50/90 shadow-blue-200/50 scale-[1.02] rotate-1' 
+          : 'border-gray-200/50 hover:shadow-xl hover:border-gray-300/70'
       }`}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
