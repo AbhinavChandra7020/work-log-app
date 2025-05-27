@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import KanbanBoard from './KahanBoard';
 import ResourcesGrid from './ResourcesGrid';
+import AppHeader from './AppHeader';
 import { Trash2 } from 'lucide-react';
-import Image from 'next/image';
 import {
   saveToIndexedDB,
   loadAllFromIndexedDB,
@@ -132,36 +132,29 @@ export default function Homepage() {
   };
 
   const handleClearAll = async () => {
-    setResources([]);
-    setTodoItems([]);
-    setInProgressItems([]);
-    setCompletedItems([]);
-    await clearAllFromIndexedDB();
+    const confirmClear = window.confirm(
+      "Are you sure you want to clear all data? This action cannot be undone."
+    );
+    
+    if (confirmClear) {
+      setResources([]);
+      setTodoItems([]);
+      setInProgressItems([]);
+      setCompletedItems([]);
+      await clearAllFromIndexedDB();
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 p-6">
-      <div className="w-full px-6 space-y-8">
-        {/* Header with logo and title */}
-        <div className="relative text-center">
-          <div className="flex justify-center items-baseline gap-4 mb-2">
-            <Image
-              src="/WorkLog.png"
-              alt="WorkLog Logo"
-              width={60}
-              height={60}
-              className="object-contain translate-y-[2px]"
-              priority
-            />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent pb-2">
-              Work Log
-            </h1>
-          </div>
-          <p className="text-gray-600 text-lg">
-            Organize your resources and track your progress
-          </p>
-
-          {/* Clear All button */}
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100">
+      {/* Full width container */}
+      <div className="w-full px-6 py-6 space-y-8">
+        
+        {/* Header Section */}
+        <div className="relative">
+          <AppHeader />
+          
+          {/* Clear All Button - positioned absolutely in top right */}
           <button
             onClick={handleClearAll}
             className="absolute top-0 right-0 group flex items-center space-x-2 px-4 py-2 text-sm font-medium text-red-600 bg-white/80 backdrop-blur-sm hover:bg-red-50 border border-red-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
@@ -171,31 +164,40 @@ export default function Homepage() {
           </button>
         </div>
 
-        <KanbanBoard
-          todoItems={todoItems}
-          inProgressItems={inProgressItems}
-          completedItems={completedItems}
-          onMoveToTodo={moveToTodo}
-          onMoveToInProgress={moveToInProgress}
-          onMoveToCompleted={moveToCompleted}
-          onDeleteFromTodo={(id) =>
-            setTodoItems((prev) => prev.filter((i) => i.id !== id))
-          }
-          onDeleteFromInProgress={(id) =>
-            setInProgressItems((prev) => prev.filter((i) => i.id !== id))
-          }
-          onDeleteFromCompleted={(id) =>
-            setCompletedItems((prev) => prev.filter((i) => i.id !== id))
-          }
-        />
+        {/* Kanban Board Section */}
+        <section>
+          <KanbanBoard
+            todoItems={todoItems}
+            inProgressItems={inProgressItems}
+            completedItems={completedItems}
+            onMoveToTodo={moveToTodo}
+            onMoveToInProgress={moveToInProgress}
+            onMoveToCompleted={moveToCompleted}
+            onDeleteFromTodo={(id) =>
+              setTodoItems((prev) => prev.filter((i) => i.id !== id))
+            }
+            onDeleteFromInProgress={(id) =>
+              setInProgressItems((prev) => prev.filter((i) => i.id !== id))
+            }
+            onDeleteFromCompleted={(id) =>
+              setCompletedItems((prev) => prev.filter((i) => i.id !== id))
+            }
+          />
+        </section>
 
-        <ResourcesGrid
-          resources={resources}
-          onAddResource={addResource}
-          onDeleteResource={deleteResource}
-          onEditResource={editResource}
-          onDropToResources={moveToResources}
-        />
+        {/* Resources Section */}
+        <section>
+          <ResourcesGrid
+            resources={resources}
+            onAddResource={addResource}
+            onDeleteResource={deleteResource}
+            onEditResource={editResource}
+            onDropToResources={moveToResources}
+          />
+        </section>
+        
+        {/* Footer spacer */}
+        <div className="h-8"></div>
       </div>
     </div>
   );

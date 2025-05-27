@@ -1,12 +1,44 @@
 import React from 'react';
+import Image from 'next/image';
 
 const AppHeader = () => {
   return (
-    <div className="text-center">
-      <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-2">
-        Work Log
-      </h1>
-      <p className="text-gray-600 text-lg">Organize your resources and track your progress</p>
+    <div className="text-center space-y-4">
+      {/* Logo and Title Row */}
+      <div className="flex justify-center items-center gap-4">
+        <div className="relative">
+          <Image
+            src="/WorkLog.png"
+            alt="WorkLog Logo"
+            width={64}
+            height={64}
+            className="object-contain drop-shadow-lg"
+            priority
+          />
+          {/* Subtle glow effect behind logo */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-2xl blur-xl -z-10 scale-150"></div>
+        </div>
+        
+        <div className="flex flex-col items-start">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-800 via-blue-700 to-purple-700 bg-clip-text text-transparent leading-tight">
+            Work Log
+          </h1>
+          {/* Subtle underline decoration */}
+          <div className="w-full h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full mt-1 opacity-30"></div>
+        </div>
+      </div>
+      
+      {/* Subtitle */}
+      <p className="text-gray-600 text-lg font-medium max-w-md mx-auto">
+        Organize your resources and track your progress with style
+      </p>
+      
+      {/* Decorative elements */}
+      <div className="flex justify-center items-center space-x-2 opacity-40">
+        <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-pulse"></div>
+        <div className="w-1 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-pulse delay-300"></div>
+        <div className="w-2 h-2 bg-gradient-to-r from-pink-400 to-red-400 rounded-full animate-pulse delay-700"></div>
+      </div>
     </div>
   );
 };
