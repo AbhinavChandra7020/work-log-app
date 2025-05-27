@@ -2,7 +2,7 @@
 import React from 'react';
 import AddButton from './ResourceInput/AddButton';
 import ResourceForm from './ResourceInput/ResourceForm';
-import { saveToIndexedDB } from '../utils/indexedDbUtils';
+import { saveToIndexedDB } from '../_utils/indexedDbUtils';
 
 interface ResourceInputProps {
   inputRef: React.RefObject<HTMLTextAreaElement>;
@@ -50,7 +50,7 @@ const ResourceInput: React.FC<ResourceInputProps> = ({
             : 'border-gray-300/60 hover:border-blue-400/70 hover:bg-gradient-to-br hover:from-blue-50/30 hover:to-sky-50/30 hover:scale-102'
         }`}
       >
-        {/* Floating decoration */}
+        {/* floating decoration */}
         {!showInput && (
           <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-blue-400 to-sky-400 rounded-full opacity-20 animate-pulse"></div>
         )}

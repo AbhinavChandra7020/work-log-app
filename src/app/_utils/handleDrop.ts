@@ -1,4 +1,4 @@
-// utils/handleDrop.ts
+
 
 interface DraggableItemData {
   id: number;
@@ -34,15 +34,15 @@ export function handleDrop<T extends DraggableItemData>({
     return;
   }
 
-  // 1. Prevent duplicates
+  // prevent duplicates
   if (currentList.some(item => item.id === droppedItem.id)) return;
 
-  // 2. Remove from original source list if applicable
+  // remove from original source list if applicable
   if (droppedItem.source && droppedItem.source !== sourceKey && onRemoveFromSource) {
     onRemoveFromSource(droppedItem.source, droppedItem.id);
   }
 
-  // 3. Add to current list
+  // add to current list
   const newList = [...currentList, { ...droppedItem, source: sourceKey }];
   if (typeof onUpdate === 'function') {
     onUpdate(newList);

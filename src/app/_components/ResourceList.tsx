@@ -27,9 +27,9 @@ const ResourceList: React.FC<ResourceListProps> = ({
     try {
       const droppedItem = JSON.parse(data);
       
-      // Only handle items from kanban (don't duplicate resources)
+      // only handle items from kanban (dont duplicate resources)
       if (droppedItem.source === 'kanban') {
-        // Check if item already exists in resources
+        // check if item already exists in resources
         const alreadyExists = resources.some((r) => r.content === droppedItem.content);
         if (!alreadyExists) {
           const newItem = {

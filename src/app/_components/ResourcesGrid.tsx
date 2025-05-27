@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import ResourcesHeader from './ResourcesHeader';
+import ResourcesHeader from './ui/ResourcesHeader';
 import ResourceList from './ResourceList';
 import ResourceInput from './ResourceInput';
 

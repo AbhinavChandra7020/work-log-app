@@ -64,7 +64,7 @@ const WebsitePreview: React.FC<WebsitePreviewProps> = ({ url }) => {
     }
   };
 
-  // Loading state
+  // loading state
   if (isLoading) {
     return (
       <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl h-[200px] w-full flex items-center justify-center">
@@ -76,7 +76,7 @@ const WebsitePreview: React.FC<WebsitePreviewProps> = ({ url }) => {
     );
   }
 
-  // Error state
+  // error state
   if (hasError || !websiteData) {
     return (
       <div 
@@ -117,7 +117,7 @@ const WebsitePreview: React.FC<WebsitePreviewProps> = ({ url }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex h-full">
-        {/* Logo Section - Left Side */}
+        {/* website logo */}
         <div className="w-24 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center border-r border-gray-200 flex-shrink-0">
           {websiteData.logo && !logoError ? (
             <img 
@@ -133,7 +133,7 @@ const WebsitePreview: React.FC<WebsitePreviewProps> = ({ url }) => {
           )}
         </div>
 
-        {/* Content Section - Right Side */}
+        {/* website content */}
         <div className="flex-1 p-4 flex flex-col justify-between">
           <div className="space-y-2">
             <h3 className="font-semibold text-gray-900 text-sm line-clamp-2 leading-tight">
@@ -152,13 +152,12 @@ const WebsitePreview: React.FC<WebsitePreviewProps> = ({ url }) => {
               {websiteData.publisher || getDomain(url)}
             </span>
             
-            {/* External link icon */}
+            {/* external link icon*/}
             <ExternalLink className="w-3 h-3 text-gray-400 flex-shrink-0 ml-2" />
           </div>
         </div>
       </div>
 
-      {/* Hover overlay */}
       <div className={`absolute inset-0 bg-blue-600/5 transition-all duration-300 ${
         isHovered ? 'opacity-100' : 'opacity-0'
       }`}>
@@ -170,7 +169,7 @@ const WebsitePreview: React.FC<WebsitePreviewProps> = ({ url }) => {
         </div>
       </div>
 
-      {/* Background image overlay (subtle) */}
+      {/* background image overlay */}
       {websiteData.image && (
         <div 
           className="absolute inset-0 opacity-5 bg-cover bg-center -z-10"

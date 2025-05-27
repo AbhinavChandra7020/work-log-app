@@ -1,4 +1,3 @@
-// components/DraggableItem.tsx
 'use client';
 import React from 'react';
 import { GripVertical } from 'lucide-react';

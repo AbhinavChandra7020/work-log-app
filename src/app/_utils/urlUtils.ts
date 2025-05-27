@@ -1,4 +1,4 @@
-// utils/urlUtils.ts
+
 export const getUrlType = (url: string) => {
   if (!url) return 'text';
   const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;

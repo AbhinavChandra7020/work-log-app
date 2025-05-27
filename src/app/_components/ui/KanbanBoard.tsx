@@ -39,7 +39,6 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
         onDrop={onMoveToTodo}
         onDeleteItem={onDeleteFromTodo}
         setItems={(newItems) => {
-          // This is a placeholder - you'll need to pass the actual setter from Homepage
           console.log('setItems called for todoItems:', newItems);
         }}
         bgColor="bg-gradient-to-br from-red-50 to-pink-50"
@@ -52,7 +51,6 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
         onDrop={onMoveToInProgress}
         onDeleteItem={onDeleteFromInProgress}
         setItems={(newItems) => {
-          // This is a placeholder - you'll need to pass the actual setter from Homepage
           console.log('setItems called for inProgressItems:', newItems);
         }}
         bgColor="bg-gradient-to-br from-yellow-50 to-orange-50"
@@ -65,7 +63,6 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
         onDrop={onMoveToCompleted}
         onDeleteItem={onDeleteFromCompleted}
         setItems={(newItems) => {
-          // This is a placeholder - you'll need to pass the actual setter from Homepage
           console.log('setItems called for completedItems:', newItems);
         }}
         bgColor="bg-gradient-to-br from-green-50 to-emerald-50"

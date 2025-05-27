@@ -24,16 +24,16 @@ const ResourceForm: React.FC<ResourceFormProps> = ({
 
   return (
     <div className="w-full bg-white/95 backdrop-blur-xl border border-gray-200/60 rounded-2xl shadow-xl p-6 transition-all duration-300">
-      {/* Header */}
+      {/* header */}
       <div className="text-center mb-5">
         <h3 className="text-lg font-semibold bg-gradient-to-r from-slate-700 to-blue-600 bg-clip-text text-transparent">
           Add New Resource
         </h3>
       </div>
 
-      {/* Content */}
+      {/* content */}
       <div className="space-y-5">
-        {/* Textarea - Only shown if no image */}
+        {/* textarea - only shown if no image */}
         {!image && (
           <div className="w-full">
             <textarea
@@ -49,7 +49,7 @@ const ResourceForm: React.FC<ResourceFormProps> = ({
           </div>
         )}
 
-        {/* Modern File Upload */}
+        {/* file upload */}
         <div className="w-full">
           {!image ? (
             <label className="relative block w-full group">
@@ -74,7 +74,7 @@ const ResourceForm: React.FC<ResourceFormProps> = ({
               />
             </label>
           ) : (
-            // Image Preview with elegant design
+            // image preview
             <div className="relative bg-gray-50/50 rounded-xl border border-gray-200/50 overflow-hidden">
               <div className="relative">
                 <img
@@ -105,7 +105,7 @@ const ResourceForm: React.FC<ResourceFormProps> = ({
           )}
         </div>
 
-        {/* Add Resource Button */}
+        {/* add resource button */}
         <div className="w-full pt-2">
           <button
             onClick={() => onSubmit(value.trim(), image ?? undefined)}
@@ -116,7 +116,7 @@ const ResourceForm: React.FC<ResourceFormProps> = ({
           </button>
         </div>
 
-        {/* Cancel Button */}
+        {/* cancel button */}
         <div className="w-full">
           <button
             onClick={onCancel}

@@ -8,7 +8,6 @@ interface DropZoneHeaderProps {
 }
 
 const DropZoneHeader: React.FC<DropZoneHeaderProps> = ({ icon, title, count, theme = 'blue' }) => {
-  // Theme configurations
   const themeConfig = {
     red: {
       iconBg: 'from-red-100 via-rose-50 to-red-100',

@@ -35,7 +35,7 @@ const DropZone: React.FC<DropZoneProps> = ({
 }) => {
   const [isDragOver, setIsDragOver] = useState(false);
 
-  // Theme configurations
+  // theme configurations
   const themeConfig = {
     red: {
       dragOver: 'border-red-400 bg-gradient-to-br from-red-50/90 to-rose-50/90 shadow-red-200/50',

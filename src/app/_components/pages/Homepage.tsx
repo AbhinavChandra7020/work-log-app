@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import KanbanBoard from '../ui/KahanBoard';
+import KanbanBoard from '../ui/KanbanBoard';
 import ResourcesGrid from '../ResourcesGrid';
 import AppHeader from '../ui/AppHeader';
 import Modal from '../ui/Modal';
@@ -10,7 +10,7 @@ import {
   loadAllFromIndexedDB,
   deleteFromIndexedDB,
   clearAllFromIndexedDB,
-} from '../../utils/indexedDbUtils';
+} from '../../_utils/indexedDbUtils';
 
 interface ResourceItem {
   id: number;

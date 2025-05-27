@@ -7,7 +7,6 @@ interface DropZoneEmptyProps {
 }
 
 const DropZoneEmpty: React.FC<DropZoneEmptyProps> = ({ isDragOver, theme = 'blue' }) => {
-  // Theme configurations
   const themeConfig = {
     red: {
       decorations: 'from-red-400 to-rose-400',
@@ -91,7 +90,6 @@ const DropZoneEmpty: React.FC<DropZoneEmptyProps> = ({ isDragOver, theme = 'blue
   
   return (
     <div className="text-center py-16 relative">
-      {/* Floating decoration when not dragging */}
       {!isDragOver && (
         <>
           <div className={`absolute top-8 left-1/4 w-6 h-6 bg-gradient-to-br ${currentTheme.decorations} rounded-full opacity-20 animate-pulse`}></div>
@@ -101,13 +99,12 @@ const DropZoneEmpty: React.FC<DropZoneEmptyProps> = ({ isDragOver, theme = 'blue
 
       {isDragOver ? (
         <div className={`${currentTheme.dragOver.text} relative`}>
-          {/* Active drop state */}
+          {/* active drop state */}
           <div className="relative">
             <div className={`w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br ${currentTheme.dragOver.bg} flex items-center justify-center shadow-xl border-2 ${currentTheme.dragOver.border} border-dashed animate-pulse`}>
               <Target className={`w-12 h-12 ${currentTheme.dragOver.icon}`} />
             </div>
             
-            {/* Floating sparkles */}
             <div className="absolute -top-2 -right-2 opacity-100">
               <Sparkles className={`w-6 h-6 ${currentTheme.dragOver.sparkles} animate-pulse`} />
             </div>
@@ -120,7 +117,7 @@ const DropZoneEmpty: React.FC<DropZoneEmptyProps> = ({ isDragOver, theme = 'blue
         </div>
       ) : (
         <div className="text-gray-400">
-          {/* Default empty state */}
+          {/* default empty state */}
           <div className="relative">
             <div className="w-20 h-20 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-gray-100 via-slate-50 to-gray-100 flex items-center justify-center shadow-lg">
               <Plus className="w-10 h-10 text-gray-500" />

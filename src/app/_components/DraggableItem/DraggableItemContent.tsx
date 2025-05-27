@@ -1,8 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { getUrlType, getYouTubeId } from '../../utils/urlUtils';
+import { getUrlType, getYouTubeId } from '../../_utils/urlUtils';
 import Modal from '../ui/Modal';
-import { getBlobUrlFromIndexedDB } from '../../utils/indexedDbUtils';
+import { getBlobUrlFromIndexedDB } from '../../_utils/indexedDbUtils';
 import WebsitePreview from '../ui/WebsitePreview';
 
 interface Props {
@@ -27,7 +27,7 @@ const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
   const type = isBlobReference ? null : getUrlType(content);
   const videoId = type === 'youtube' ? getYouTubeId(content) : null;
 
-  // 👉 Blob-based image preview
+  // blob-based image preview
   if (isBlobReference && imageUrl && !compact) {
     return (
       <>
@@ -44,7 +44,7 @@ const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
     );
   }
 
-  // 👉 YouTube embed
+  // YouTube embed
   if (type === 'youtube' && !compact && videoId) {
     return (
       <div className="rounded-xl overflow-hidden shadow-inner mb-3 aspect-video w-full">
@@ -60,16 +60,12 @@ const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
     );
   }
 
-  // 👉 External link preview using Microlink
+  // external link preview
   if (type === 'url' && !compact) {
-    try {
-      return <WebsitePreview url={content} />;
-    } catch {
-      // fallback to text rendering
-    }
+    return <WebsitePreview url={content} />;
   }
 
-  // 👉 Plain text fallback
+  // plain text fallback
   return (
     <>
       <div
@@ -81,10 +77,8 @@ const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
           {content}
         </p>
 
-        {/* Fade */}
         <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white to-transparent" />
 
-        {/* Hover overlay */}
         <div className="absolute bottom-2 right-3 hidden group-hover:flex">
           <span className="text-xs text-blue-600 bg-white px-2 py-1 rounded-md border hover:bg-blue-50 cursor-pointer">
             View More

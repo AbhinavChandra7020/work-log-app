@@ -1,6 +1,6 @@
 import React from 'react';
 import DraggableItem from '../DraggableItem';
-import { handleDrop } from '../../utils/handleDrop'; // Adjust path based on your folder structure
+import { handleDrop } from '../../_utils/handleDrop'; 
 
 interface Item {
   id: number;
@@ -46,7 +46,7 @@ const DropZoneList: React.FC<DropZoneListProps> = ({
         <DraggableItem
           key={item.id}
           item={item}
-          compact={false} // Full previews enabled
+          compact={false} 
           showActions={true}
           onDelete={onDeleteItem}
           source="kanban"
