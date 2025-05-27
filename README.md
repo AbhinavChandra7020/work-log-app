@@ -2,11 +2,21 @@
 
 All of us need Todo Apps to get our work done and organized. But what about a Todo WorkLog app that has the ability to store resources such as Website Links, YouTube Links, Images, and text, that can be accessed anytime and can be dragged and dropped into either a To Do, In Progress, or Completed section of the app.
 
+**Live Website**: [https://work-log-app-red.vercel.app/](https://work-log-app-red.vercel.app/)
+
 ## Overview
 
 ### Watch the Demo
 
 [![Watch the video](https://img.youtube.com/vi/ayTJg89-rVI/0.jpg)](https://www.youtube.com/watch?v=ayTJg89-rVI)
+
+## Tech Stack
+
+- Next.js with TypeScript
+- Tailwind CSS for styling
+- Lucide Icons for interface icons
+- Microlink API for website previews
+- IndexedDB for persistent local storage
 
 *A quick walkthrough of the Work Log App and its features.*
 
@@ -68,14 +78,6 @@ npm run dev
 ```bash
 npm run build
 ```
-
-## Tech Stack
-
-- Next.js with TypeScript
-- Tailwind CSS for styling
-- Lucide Icons for interface icons
-- Microlink API for website previews
-- IndexedDB for persistent local storage
 
 ## License
 
