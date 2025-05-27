@@ -10,32 +10,29 @@ interface ResourceItem {
 interface ResourceListProps {
   resources: ResourceItem[];
   onDelete: (id: number) => void;
-  onEdit: (id: number, content: string) => void;
   setResources: (newResources: ResourceItem[]) => void;
 }
 
 const ResourceList: React.FC<ResourceListProps> = ({
   resources,
   onDelete,
-  onEdit,
   setResources,
 }) => {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const data = e.dataTransfer.getData('text/plain');
-    
+
     try {
       const droppedItem = JSON.parse(data);
-      
-      // only handle items from kanban (dont duplicate resources)
+
+      // only handle items from kanban (don't duplicate resources)
       if (droppedItem.source === 'kanban') {
-        // check if item already exists in resources
         const alreadyExists = resources.some((r) => r.content === droppedItem.content);
         if (!alreadyExists) {
           const newItem = {
             ...droppedItem,
             id: Date.now() + Math.random(),
-            source: 'resources'
+            source: 'resources',
           };
           setResources([...resources, newItem]);
         }

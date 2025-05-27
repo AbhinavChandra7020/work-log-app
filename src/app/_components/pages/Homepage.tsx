@@ -49,12 +49,6 @@ export default function Homepage() {
     await deleteFromIndexedDB(id);
   };
 
-  const editResource = (id: number, newContent: string) => {
-    setResources((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, content: newContent } : r))
-    );
-  };
-
   const moveToTodo = (item: ResourceItem) => {
     if (item.source === 'kanban') removeFromKanban(item);
     setTodoItems([
@@ -182,7 +176,6 @@ export default function Homepage() {
             setResources={setResources}
             onAddResource={addResource}
             onDeleteResource={deleteResource}
-            onEditResource={editResource}
             onDropToResources={moveToResources}
           />
         </section>

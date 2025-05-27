@@ -77,6 +77,7 @@ const ResourceForm: React.FC<ResourceFormProps> = ({
             // image preview
             <div className="relative bg-gray-50/50 rounded-xl border border-gray-200/50 overflow-hidden">
               <div className="relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={imagePreviewUrl!}
                   alt="Preview"

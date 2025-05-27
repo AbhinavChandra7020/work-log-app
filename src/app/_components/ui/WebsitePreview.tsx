@@ -120,6 +120,7 @@ const WebsitePreview: React.FC<WebsitePreviewProps> = ({ url }) => {
         {/* website logo */}
         <div className="w-24 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center border-r border-gray-200 flex-shrink-0">
           {websiteData.logo && !logoError ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img 
               src={websiteData.logo} 
               alt={`${websiteData.publisher || getDomain(url)} logo`}

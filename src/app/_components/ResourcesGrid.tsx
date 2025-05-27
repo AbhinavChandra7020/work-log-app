@@ -14,8 +14,7 @@ interface ResourcesGridProps {
   resources: ResourceItem[];
   onAddResource: (content: string) => void;
   onDeleteResource: (id: number) => void;
-  onEditResource: (id: number, content: string) => void;
-  onDropToResources: (item: any) => void;
+  onDropToResources: (item: ResourceItem) => void;
   setResources: (newResources: ResourceItem[]) => void;
 }
 
@@ -23,7 +22,6 @@ const ResourcesGrid: React.FC<ResourcesGridProps> = ({
   resources,
   onAddResource,
   onDeleteResource,
-  onEditResource,
   onDropToResources,
   setResources,
 }) => {
@@ -72,7 +70,6 @@ const ResourcesGrid: React.FC<ResourcesGridProps> = ({
       <ResourceList
         resources={resources}
         onDelete={onDeleteResource}
-        onEdit={onEditResource}
         setResources={setResources}
       />
 

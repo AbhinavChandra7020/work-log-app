@@ -13,10 +13,9 @@ interface Props {
 const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
   const [showModal, setShowModal] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const isBlobReference = content.startsWith('__blob__');
 
   useEffect(() => {
-    if (isBlobReference) {
+    if (content.startsWith('__blob__')) {
       const id = parseFloat(content.replace('__blob__', ''));
       getBlobUrlFromIndexedDB(id).then((url) => {
         if (url) setImageUrl(url);
@@ -24,6 +23,7 @@ const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
     }
   }, [content]);
 
+  const isBlobReference = content.startsWith('__blob__');
   const type = isBlobReference ? null : getUrlType(content);
   const videoId = type === 'youtube' ? getYouTubeId(content) : null;
 
@@ -31,6 +31,7 @@ const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
   if (isBlobReference && imageUrl && !compact) {
     return (
       <>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={imageUrl}
           alt="Uploaded content"
@@ -38,6 +39,7 @@ const DraggableItemContent: React.FC<Props> = ({ content, compact }) => {
           onClick={() => setShowModal(true)}
         />
         <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Image">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={imageUrl} alt="Full preview" className="w-full rounded-lg" />
         </Modal>
       </>

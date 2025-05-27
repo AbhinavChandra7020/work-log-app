@@ -37,7 +37,7 @@ export default function NotFound() {
             </h2>
             <p className="text-gray-600 text-lg max-w-md mx-auto leading-relaxed">
               The requested page is not available. <br />
-              Let's get you back to organizing your tasks.
+              Let&apos;s get you back to organizing your tasks.
             </p>
           </div>
 
