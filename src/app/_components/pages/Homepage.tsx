@@ -1,15 +1,16 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import KanbanBoard from './KahanBoard';
-import ResourcesGrid from './ResourcesGrid';
-import AppHeader from './AppHeader';
+import KanbanBoard from '../ui/KahanBoard';
+import ResourcesGrid from '../ResourcesGrid';
+import AppHeader from '../ui/AppHeader';
+import Modal from '../ui/Modal';
 import { Trash2 } from 'lucide-react';
 import {
   saveToIndexedDB,
   loadAllFromIndexedDB,
   deleteFromIndexedDB,
   clearAllFromIndexedDB,
-} from '../utils/indexedDbUtils';
+} from '../../utils/indexedDbUtils';
 
 interface ResourceItem {
   id: number;
@@ -23,6 +24,7 @@ export default function Homepage() {
   const [todoItems, setTodoItems] = useState<ResourceItem[]>([]);
   const [inProgressItems, setInProgressItems] = useState<ResourceItem[]>([]);
   const [completedItems, setCompletedItems] = useState<ResourceItem[]>([]);
+  const [showClearModal, setShowClearModal] = useState(false);
 
   const generateId = () => Date.now() + Math.random();
 
@@ -131,32 +133,22 @@ export default function Homepage() {
     setCompletedItems((prev) => prev.filter((c) => c.id !== item.id));
   };
 
-  const handleClearAll = async () => {
-    const confirmClear = window.confirm(
-      "Are you sure you want to clear all data? This action cannot be undone."
-    );
-    
-    if (confirmClear) {
-      setResources([]);
-      setTodoItems([]);
-      setInProgressItems([]);
-      setCompletedItems([]);
-      await clearAllFromIndexedDB();
-    }
+  const handleConfirmClearAll = async () => {
+    setResources([]);
+    setTodoItems([]);
+    setInProgressItems([]);
+    setCompletedItems([]);
+    await clearAllFromIndexedDB();
+    setShowClearModal(false);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100">
-      {/* Full width container */}
       <div className="w-full px-6 py-6 space-y-8">
-        
-        {/* Header Section */}
         <div className="relative">
           <AppHeader />
-          
-          {/* Clear All Button - positioned absolutely in top right */}
           <button
-            onClick={handleClearAll}
+            onClick={() => setShowClearModal(true)}
             className="absolute top-0 right-0 group flex items-center space-x-2 px-4 py-2 text-sm font-medium text-red-600 bg-white/80 backdrop-blur-sm hover:bg-red-50 border border-red-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
           >
             <Trash2 className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
@@ -164,7 +156,6 @@ export default function Homepage() {
           </button>
         </div>
 
-        {/* Kanban Board Section */}
         <section>
           <KanbanBoard
             todoItems={todoItems}
@@ -185,19 +176,44 @@ export default function Homepage() {
           />
         </section>
 
-        {/* Resources Section */}
         <section>
           <ResourcesGrid
             resources={resources}
+            setResources={setResources}
             onAddResource={addResource}
             onDeleteResource={deleteResource}
             onEditResource={editResource}
             onDropToResources={moveToResources}
           />
         </section>
-        
-        {/* Footer spacer */}
+
         <div className="h-8"></div>
+
+        <Modal
+          isOpen={showClearModal}
+          onClose={() => setShowClearModal(false)}
+          title="Clear All Data?"
+        >
+          <div className="flex flex-col items-center space-y-4">
+            <p className="text-gray-700 text-center">
+              Are you sure you want to <strong>clear all resources and tasks</strong>? This action cannot be undone.
+            </p>
+            <div className="flex justify-center space-x-4 mt-4">
+              <button
+                onClick={() => setShowClearModal(false)}
+                className="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmClearAll}
+                className="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 transition"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </Modal>
       </div>
     </div>
   );

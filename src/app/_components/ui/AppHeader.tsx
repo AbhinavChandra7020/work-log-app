@@ -20,16 +20,16 @@ const AppHeader = () => {
         </div>
         
         <div className="flex flex-col items-start">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-800 via-blue-700 to-purple-700 bg-clip-text text-transparent leading-tight">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-green-950 via-green-700 to-green-400 bg-clip-text text-transparent leading-tight">
             Work Log
           </h1>
           {/* Subtle underline decoration */}
-          <div className="w-full h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full mt-1 opacity-30"></div>
+          <div className="w-full h-1 bg-gradient-to-r from-green-500 via-green-200 to-green-500 rounded-full mt-1 opacity-30"></div>
         </div>
       </div>
       
       {/* Subtitle */}
-      <p className="text-gray-600 text-lg font-medium max-w-md mx-auto">
+      <p className="text-green-900 text-lg font-medium max-w-md mx-auto">
         Organize your resources and track your progress with style
       </p>
       

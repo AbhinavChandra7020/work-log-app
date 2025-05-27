@@ -21,10 +21,11 @@ const DropZoneEmpty: React.FC<DropZoneEmptyProps> = ({ isDragOver, theme = 'blue
         sparkles: 'text-red-500'
       },
       hover: {
-        bg: 'group-hover:from-red-100 group-hover:via-rose-50 group-hover:to-red-100',
-        text: 'group-hover:text-red-600',
-        subtitle: 'group-hover:text-red-500',
-        gradient: 'group-hover:from-red-400/10 group-hover:via-rose-400/10 group-hover:to-red-400/10'
+        bg: 'hover:from-red-50 hover:via-rose-25 hover:to-red-50',
+        text: 'hover:text-red-500',
+        subtitle: 'hover:text-red-400',
+        iconBg: 'hover:bg-red-50',
+        shadow: 'hover:shadow-red-100'
       }
     },
     yellow: {
@@ -39,10 +40,11 @@ const DropZoneEmpty: React.FC<DropZoneEmptyProps> = ({ isDragOver, theme = 'blue
         sparkles: 'text-yellow-500'
       },
       hover: {
-        bg: 'group-hover:from-yellow-100 group-hover:via-amber-50 group-hover:to-yellow-100',
-        text: 'group-hover:text-yellow-600',
-        subtitle: 'group-hover:text-yellow-500',
-        gradient: 'group-hover:from-yellow-400/10 group-hover:via-amber-400/10 group-hover:to-yellow-400/10'
+        bg: 'hover:from-yellow-50 hover:via-amber-25 hover:to-yellow-50',
+        text: 'hover:text-yellow-500',
+        subtitle: 'hover:text-yellow-400',
+        iconBg: 'hover:bg-yellow-50',
+        shadow: 'hover:shadow-yellow-100'
       }
     },
     green: {
@@ -57,10 +59,11 @@ const DropZoneEmpty: React.FC<DropZoneEmptyProps> = ({ isDragOver, theme = 'blue
         sparkles: 'text-green-500'
       },
       hover: {
-        bg: 'group-hover:from-green-100 group-hover:via-emerald-50 group-hover:to-green-100',
-        text: 'group-hover:text-green-600',
-        subtitle: 'group-hover:text-green-500',
-        gradient: 'group-hover:from-green-400/10 group-hover:via-emerald-400/10 group-hover:to-green-400/10'
+        bg: 'hover:from-green-50 hover:via-emerald-25 hover:to-green-50',
+        text: 'hover:text-green-500',
+        subtitle: 'hover:text-green-400',
+        iconBg: 'hover:bg-green-50',
+        shadow: 'hover:shadow-green-100'
       }
     },
     blue: {
@@ -75,15 +78,17 @@ const DropZoneEmpty: React.FC<DropZoneEmptyProps> = ({ isDragOver, theme = 'blue
         sparkles: 'text-blue-500'
       },
       hover: {
-        bg: 'group-hover:from-blue-100 group-hover:via-indigo-50 group-hover:to-blue-100',
-        text: 'group-hover:text-blue-600',
-        subtitle: 'group-hover:text-blue-500',
-        gradient: 'group-hover:from-blue-400/10 group-hover:via-indigo-400/10 group-hover:to-blue-400/10'
+        bg: 'hover:from-blue-50 hover:via-indigo-25 hover:to-blue-50',
+        text: 'hover:text-blue-500',
+        subtitle: 'hover:text-blue-400',
+        iconBg: 'hover:bg-blue-50',
+        shadow: 'hover:shadow-blue-100'
       }
     }
   };
 
   const currentTheme = themeConfig[theme];
+  
   return (
     <div className="text-center py-16 relative">
       {/* Floating decoration when not dragging */}
@@ -114,25 +119,22 @@ const DropZoneEmpty: React.FC<DropZoneEmptyProps> = ({ isDragOver, theme = 'blue
           </div>
         </div>
       ) : (
-        <div className="text-gray-400 group relative">
+        <div className="text-gray-400">
           {/* Default empty state */}
           <div className="relative">
-            <div className={`w-20 h-20 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-gray-100 via-slate-50 to-gray-100 flex items-center justify-center shadow-lg ${currentTheme.hover.bg} transition-all duration-300 group-hover:shadow-xl group-hover:scale-110`}>
-              <Plus className={`w-10 h-10 ${currentTheme.hover.text} transition-all duration-300 group-hover:rotate-90`} />
+            <div className="w-20 h-20 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-gray-100 via-slate-50 to-gray-100 flex items-center justify-center shadow-lg">
+              <Plus className="w-10 h-10 text-gray-500" />
             </div>
           </div>
           
           <div className="space-y-2">
-            <p className={`font-bold text-lg ${currentTheme.hover.text} transition-colors duration-300`}>
+            <p className="font-bold text-lg text-gray-500">
               Drop items here
             </p>
-            <p className={`text-sm text-gray-400 ${currentTheme.hover.subtitle} transition-colors duration-300 max-w-[250px] mx-auto`}>
+            <p className="text-sm text-gray-400 max-w-[250px] mx-auto">
               Drag resources or items from other areas to organize them here
             </p>
           </div>
-          
-          {/* Subtle animated border */}
-          <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r from-gray-400/0 via-gray-400/0 to-gray-400/0 ${currentTheme.hover.gradient} transition-all duration-500 -z-10`}></div>
         </div>
       )}
     </div>

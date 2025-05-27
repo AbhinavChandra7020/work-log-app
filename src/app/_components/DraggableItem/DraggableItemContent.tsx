@@ -1,9 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { getUrlType, getYouTubeId } from '../../utils/urlUtils';
-import Modal from '../Modal';
+import Modal from '../ui/Modal';
 import { getBlobUrlFromIndexedDB } from '../../utils/indexedDbUtils';
-import WebsitePreview from '../WebsitePreview';
+import WebsitePreview from '../ui/WebsitePreview';
 
 interface Props {
   content: string;

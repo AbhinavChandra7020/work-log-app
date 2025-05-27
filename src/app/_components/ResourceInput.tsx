@@ -46,13 +46,13 @@ const ResourceInput: React.FC<ResourceInputProps> = ({
       <div
         className={`relative border-2 border-dashed rounded-3xl p-8 flex items-center justify-center min-h-[180px] transition-all duration-500 ${
           showInput
-            ? 'border-blue-400 bg-gradient-to-br from-blue-50/80 to-indigo-50/80 backdrop-blur-sm scale-105'
-            : 'border-gray-300/60 hover:border-purple-400/70 hover:bg-gradient-to-br hover:from-purple-50/30 hover:to-pink-50/30 hover:scale-102'
+            ? 'border-blue-400 bg-gradient-to-br from-blue-50/80 to-sky-50/80 backdrop-blur-sm scale-105'
+            : 'border-gray-300/60 hover:border-blue-400/70 hover:bg-gradient-to-br hover:from-blue-50/30 hover:to-sky-50/30 hover:scale-102'
         }`}
       >
         {/* Floating decoration */}
         {!showInput && (
-          <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-20 animate-pulse"></div>
+          <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-blue-400 to-sky-400 rounded-full opacity-20 animate-pulse"></div>
         )}
         
         {showInput ? (

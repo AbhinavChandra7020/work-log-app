@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, Clock, CheckCircle2 } from 'lucide-react';
-import DropZone from './DropZone';
+import DropZone from '../DropZone';
 
 interface Item {
   id: number;
