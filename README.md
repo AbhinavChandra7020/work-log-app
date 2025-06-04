@@ -8,7 +8,7 @@ All of us need Todo Apps to get our work done and organized. But what about a To
 
 ### Watch the Demo
 
-[![Watch the video](https://img.youtube.com/vi/ayTJg89-rVI/0.jpg)](https://www.youtube.com/watch?v=ayTJg89-rVI)
+[![Watch the video](https://img.youtube.com/vi/0cVmhRpFqYs/0.jpg)](https://www.youtube.com/watch?v=0cVmhRpFqYs)
 
 ## Tech Stack
 
